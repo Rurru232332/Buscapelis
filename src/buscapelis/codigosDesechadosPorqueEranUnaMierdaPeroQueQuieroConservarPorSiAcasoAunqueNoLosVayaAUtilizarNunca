@@ -1,0 +1,52 @@
+-CLASE PARTIDA:
+
+    CONTADOR DE LÍNEAS RANCIO
+
+    int contadorSaltos = 0;
+    try {
+        fr = new FileReader ("peliculas.txt");
+
+
+        char caracterLeido = (char)fr.read();
+
+        while (caracterLeido != '?'){
+            if (caracterLeido == '\r'){
+                contadorSaltos ++;
+                //System.out.println(contadorSaltos);
+            }
+
+            caracterLeido = (char)fr.read();
+        }
+    }
+    catch (FileNotFoundException ex) {
+        //Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+        System.err.println("Error al abrir fr");
+    }
+    catch (IOException ex) {
+        //Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+        System.err.println("Error al leer fichero fr");
+    }
+    finally{
+        if (fr != null){
+            try {
+                fr.close();
+            }
+            catch (IOException ex) {
+                //Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Error al cerrar fichero fr");
+            }
+        }
+    }
+
+
+    ÑAPA CUTRE PARA CUANDO EL TÍTULO ERA NULL Y NO SABÍA POR QUÉ
+
+    if (titulo == null){
+        /*
+        Esto es para que si por alguna razón el texto se queda en null,
+        se le asigne un título y el programa no crashee
+        Este título no aparece en el archivo peliculas.txt para que tenga
+        la misma probabilidad de aparecer que el resto
+
+        titulo = "LA MOSCA";
+    }
