@@ -1,0 +1,4 @@
+Si quieres introducir nuevos títulos en cualquiera de los modos de juego (películas, series o bandas) es importante que:
+-Sólo introduzcas letras de la A a la Z
+-Los únicos caracteres especiales que puedes introducir son los dos puntos (:) y el guión normal (-). Nada de comillas, &, %, $ ni ningún otro caracter
+-Asegúrate de que cada título ocupa una sola línea. Si has introducido dos títulos en la misma línea, el programa lo interpretará como un solo título

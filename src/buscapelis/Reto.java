@@ -18,44 +18,99 @@ public class Reto {
      */
     
     
-    String titulo;
-    boolean aciertos[];
+    private String tituloOriginal;
+    private String tituloSinTildes;
+    private boolean aciertos[];
+    private int puntos;
+    private int dificultad;
+    private Partida partida;
     
     public Reto(Partida p){
-        titulo = p.getTitulo();
+        partida = p;
+        tituloOriginal = p.getTitulo();
         aciertos = p.getAciertos();
+        puntos = p.getPuntos();
+        dificultad = p.getDificultad();
+        sinTildes();
     }
     
-    private int comprobar (char letra){
+    public boolean comprobarTitulo (String tit){
         
-        int letrasDesbloqueadas = 0;
+        dificultad = partida.getDificultad();
+        if (tit.equals(tituloSinTildes)){
+            return true;
+        }
+        else{
+            puntos = puntos - (50 * dificultad);
+            return false;
+        }
+    }
+    
+    public void introducirLetra (char letra){ //por cada letra que marcas te quita puntos
         
+        dificultad = partida.getDificultad();
         for (int k = 0; k<aciertos.length; k++){
             
-            if (titulo.charAt(k) == letra){
+            if (tituloSinTildes.charAt(k) == letra){
                 aciertos[k] = true;
-                letrasDesbloqueadas ++;
             }
         }
         
-        return letrasDesbloqueadas;
+        puntos -= 10 * dificultad;
+    }
+    
+    protected void sinTildes(){
+        
+        tituloSinTildes = "";
+        for (int k = 0; k< tituloOriginal.length(); k++){
+            if (tituloOriginal.charAt(k) == 'a' || tituloOriginal.charAt(k) == 'á' || tituloOriginal.charAt(k) == 'Á'){
+                tituloSinTildes += "A";
+            }
+            else if (tituloOriginal.charAt(k) == 'e' || tituloOriginal.charAt(k) == 'é' || tituloOriginal.charAt(k) == 'É'){
+                tituloSinTildes += "E";
+            }
+            else if (tituloOriginal.charAt(k) == 'i' || tituloOriginal.charAt(k) == 'í' || tituloOriginal.charAt(k) == 'Í'){
+                tituloSinTildes += "I";
+            }
+            else if (tituloOriginal.charAt(k) == 'o' || tituloOriginal.charAt(k) == 'ó' || tituloOriginal.charAt(k) == 'Ó'){
+                tituloSinTildes += "O";
+            }
+            else if (tituloOriginal.charAt(k) == 'u' || tituloOriginal.charAt(k) == 'ú' || tituloOriginal.charAt(k) == 'Ú'){
+                tituloSinTildes += "U";
+            }
+            else{
+                tituloSinTildes += tituloOriginal.charAt(k);
+            }
+        }
+    }
+
+    public String getTituloOriginal() {
+        return tituloOriginal;
+    }
+
+    public String getTituloSinTildes() {
+        return tituloSinTildes;
+    }
+
+    public boolean[] getAciertos() {
+        return aciertos;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public int getDificultad() {
+        return dificultad;
     }
     
     /*
     public static void main (String[] args){
+        Partida p = new Partida();
+        Reto r = new Reto(p);
         
-        Reto r = new Reto();
-        
-        Scanner sc = new Scanner (System.in);
-        
-        int ac = 0;
-        System.out.println(r.comprobar('4'));
-        for (int k = 0; k<r.aciertos.length; k++){
-            if (r.aciertos[k] == true){
-                ac++;
-            }
-        }
-        
-        System.out.println(ac);
+        System.out.println(r.getTituloOriginal());
+        System.out.println(r.getTituloSinTildes());
+        System.out.println((int)'9');
     }*/
 }

@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="m_MBarMain">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="m_MenPartida">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Partida"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="m_MItNuevaPartida">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nueva Partida"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_MItNuevaPartidaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="m_MItGuardarPartida">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar Partida"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_MItGuardarPartidaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="m_MItCargarPartida">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cargar Partida"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_MItCargarPartidaActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="m_MenDificultad">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dificultad"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="m_MItFacil">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F&#xe1;cil"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_MItFacilActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="m_MItIntermedio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Intermedio"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_MItIntermedioActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="m_MItDificil">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D&#xed;ficil"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_MItDificilActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="m_MenAyuda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
+          </Properties>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Adivina Pel&#xed;culas"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="m_MBarMain"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="m_PanMain" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="m_PanMain" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="m_PanMain">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="M_PanBotones" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="149" max="32767" attributes="0"/>
+                  <Component id="m_PanAdivina" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="m_TxtAFrase" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="m_TxtAFrase" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="M_PanBotones" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                          <Component id="m_PanAdivina" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="m_TxtAFrase">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Console" size="24" style="1"/>
+            </Property>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Hola que pasa"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JPanel" name="M_PanBotones">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="m_ButA" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButB" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButC" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButD" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButE" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButF" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButG" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButH" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButI" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButJ" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="m_ButK" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButL" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButM" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButEnne" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButO" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButP" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButQ" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButS" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="m_ButT" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButU" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButV" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButW" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButX" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButY" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_ButZ" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="m_But1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="m_But0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="m_ButA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButD" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButE" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButG" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButH" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButI" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButJ" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="m_ButK" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButN" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButEnne" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButO" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButQ" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButR" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButS" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="m_ButT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButU" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButV" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButW" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButY" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_ButZ" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="m_But1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="m_But0" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="m_ButA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButAActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButB">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButBActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButC">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="C"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButCActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButD">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="D"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButDActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButE">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="E"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButEActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="F"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButFActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButG">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="G"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButGActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButH">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="H"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButHActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="I"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButIActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButJ">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="J"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButJActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButK">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="K"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButKActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="L"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButLActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButM">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="M"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButMActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButN">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="N"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButNActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButEnne">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xd1;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButEnneActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButO">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="O"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButOActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButP">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="P"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButPActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButQ">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Q"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButQActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButR">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="R"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButRActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButS">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButSActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButT">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="T"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButTActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButU">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="U"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButUActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButV">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="V"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButVActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButW">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="W"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButWActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButX">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="X"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButXActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButY">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Y"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButYActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButZ">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Z"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButZActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="1"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="2"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But3ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="4"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But4ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="5"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But5ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="6"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But6ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="7"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But7ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="8"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But8ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="9"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But9ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_But0">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_But0ActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="m_PanAdivina">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="m_LabAdivinar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="m_ButPruebaSuerte" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="m_LabPuntuacion" min="-2" pref="235" max="-2" attributes="0"/>
+                                  <Component id="m_TxtFAdivinarPelicula" min="-2" pref="235" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="m_LabAdivinar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="m_TxtFAdivinarPelicula" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="m_ButPruebaSuerte" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="m_LabPuntuacion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="m_LabAdivinar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Adivina la pel&#xed;cula"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="m_TxtFAdivinarPelicula">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Escribe tu respuesta aqu&#xed;"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_TxtFAdivinarPeliculaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="m_ButPruebaSuerte">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Prueba Suerte"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="m_ButPruebaSuerteActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="m_LabPuntuacion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Puntuaci&#xf3;n:"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
