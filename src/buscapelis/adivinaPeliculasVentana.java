@@ -1013,13 +1013,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_m_MItGuardarPartidaActionPerformed
 
     private void m_MItNuevaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItNuevaPartidaActionPerformed
-        m_PartidaActual = new Partida();
-        m_PartidaActual.setDificultad(m_DificultadActual);
-        m_RetoActual = new Reto(m_PartidaActual);
-        String frase = m_PartidaActual.encriptar();
-        m_TxtAFrase.setText(frase);
-        m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
-        reiniciarBotones();
+        nuevaPartida();
     }//GEN-LAST:event_m_MItNuevaPartidaActionPerformed
 
     private void m_MItCargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItCargarPartidaActionPerformed
@@ -1054,17 +1048,20 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
 
     private void m_MItFacilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItFacilActionPerformed
         m_DificultadActual = 1;
-        m_PartidaActual.setDificultad(1);
+        m_PartidaActual.setDificultad(m_DificultadActual);
+        nuevaPartida();
     }//GEN-LAST:event_m_MItFacilActionPerformed
 
     private void m_MItIntermedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItIntermedioActionPerformed
         m_DificultadActual = 3;
-        m_PartidaActual.setDificultad(3);
+        m_PartidaActual.setDificultad(m_DificultadActual);
+        nuevaPartida();
     }//GEN-LAST:event_m_MItIntermedioActionPerformed
 
     private void m_MItDificilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItDificilActionPerformed
         m_DificultadActual = 5;
-        m_PartidaActual.setDificultad(5);
+        m_PartidaActual.setDificultad(m_DificultadActual);
+        nuevaPartida();
     }//GEN-LAST:event_m_MItDificilActionPerformed
     
     private void comprobar(){
@@ -1085,6 +1082,17 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
             m_TxtAFrase.setText(m_RetoActual.getTituloOriginal());
         }
     }
+    
+    private void nuevaPartida(){
+        m_PartidaActual = new Partida();
+        m_RetoActual = new Reto(m_PartidaActual);
+        m_PartidaActual.setDificultad(m_DificultadActual);
+        String frase = m_PartidaActual.encriptar();
+        m_TxtAFrase.setText(frase);
+        m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        reiniciarBotones();
+    }
+    
     protected void reiniciarBotones(){
         m_ButA.setEnabled(true);
         m_ButB.setEnabled(true);
