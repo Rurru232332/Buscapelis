@@ -1074,7 +1074,6 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
                     reiniciarBotones();
                     for (int k = 0; k < arrayBotones.length; k++){
                         if (m_PartidaActual.letrasMarcadas[k]){
-                            System.out.println(k + " mira a ver");
                             arrayBotones[k].setEnabled(false);
                         }
                     }
@@ -1317,7 +1316,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private Partida m_PartidaActual;
     private Reto m_RetoActual;
-    private int m_DificultadActual;
+    private int m_DificultadActual = 1;
     private JButton arrayBotones[];
     
     /*
