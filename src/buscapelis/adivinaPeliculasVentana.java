@@ -6,11 +6,13 @@ package buscapelis;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 /**
@@ -24,6 +26,46 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
      */
     public adivinaPeliculasVentana() {
         initComponents();
+        arrayBotones = new JButton[37];
+        
+        arrayBotones[0] = m_ButA;
+        arrayBotones[1] = m_ButB;
+        arrayBotones[2] = m_ButC;
+        arrayBotones[3] = m_ButD;
+        arrayBotones[4] = m_ButE;
+        arrayBotones[5] = m_ButF;
+        arrayBotones[6] = m_ButG;
+        arrayBotones[7] = m_ButH;
+        arrayBotones[8] = m_ButI;
+        arrayBotones[9] = m_ButJ;
+        arrayBotones[10] = m_ButK;
+        arrayBotones[11] = m_ButL;
+        arrayBotones[12] = m_ButM;
+        arrayBotones[13] = m_ButN;
+        arrayBotones[14] = m_ButEnne;
+        arrayBotones[15] = m_ButO;
+        arrayBotones[16] = m_ButP;
+        arrayBotones[17] = m_ButQ;
+        arrayBotones[18] = m_ButR;
+        arrayBotones[19] = m_ButS;
+        arrayBotones[20] = m_ButT;
+        arrayBotones[21] = m_ButU;
+        arrayBotones[22] = m_ButV;
+        arrayBotones[23] = m_ButW;
+        arrayBotones[24] = m_ButX;
+        arrayBotones[25] = m_ButY;
+        arrayBotones[26] = m_ButZ;
+        arrayBotones[27] = m_But0;
+        arrayBotones[28] = m_But1;
+        arrayBotones[29] = m_But2;
+        arrayBotones[30] = m_But3;
+        arrayBotones[31] = m_But4;
+        arrayBotones[32] = m_But5;
+        arrayBotones[33] = m_But6;
+        arrayBotones[34] = m_But7;
+        arrayBotones[35] = m_But8;
+        arrayBotones[36] = m_But9;
+        
         m_PartidaActual = new Partida();
         m_RetoActual = new Reto(m_PartidaActual);
         String frase = m_PartidaActual.encriptar();
@@ -657,7 +699,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void m_ButEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_ButEActionPerformed
         m_ButE.setEnabled(false);
         m_PartidaActual.letrasMarcadas[4] = true;
@@ -1003,6 +1045,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
             try {
                 var ous = new ObjectOutputStream(Files.newOutputStream(Path.of(fc.getSelectedFile().getAbsolutePath())));
                 ous.writeObject(m_PartidaActual);
+                ous.writeObject(m_RetoActual);
             } catch (IOException ex) {
                 Logger.getLogger(adivinaPeliculasVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1020,8 +1063,27 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         JFileChooser fc = new JFileChooser();
         int returnVal = fc.showOpenDialog(/*ClaseDelFormularioPadre.*/this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            
-             //Aquí podemos trabajar con el File como de costumbre
+                try {
+                    var ois = new ObjectInputStream(Files.newInputStream(Path.of(fc.getSelectedFile().getAbsolutePath())));
+                    m_PartidaActual = (Partida)ois.readObject();
+                    m_RetoActual = (Reto)ois.readObject();
+                    
+                    m_TxtAFrase.setText(m_PartidaActual.encriptar());
+                    m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+                    
+                    reiniciarBotones();
+                    for (int k = 0; k < arrayBotones.length; k++){
+                        if (m_PartidaActual.letrasMarcadas[k]){
+                            System.out.println(k + " mira a ver");
+                            arrayBotones[k].setEnabled(false);
+                        }
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(adivinaPeliculasVentana.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                Logger.getLogger(adivinaPeliculasVentana.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                //Aquí podemos trabajar con el File como de costumbre
             System.out.println("Abriendo fichero: " + fc.getSelectedFile().getName() + ".");
         } else {
         System.out.println("El usuario no le dio al botón aceptar.");
@@ -1256,6 +1318,8 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
     private Partida m_PartidaActual;
     private Reto m_RetoActual;
     private int m_DificultadActual;
+    private JButton arrayBotones[];
+    
     /*
     private static final char [] ARRAY_ABECEDARIO = {
         'A', 'B', 'C', 'D', 'E', 'F',

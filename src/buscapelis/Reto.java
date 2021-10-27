@@ -5,13 +5,14 @@
  */
 package buscapelis;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author Alumno Tarde
  */
-public class Reto {
+public class Reto implements Serializable{
 
     /**
      * @param args the command line arguments

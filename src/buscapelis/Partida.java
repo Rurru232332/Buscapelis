@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import static java.nio.file.StandardOpenOption.CREATE;
@@ -21,10 +22,10 @@ import java.util.logging.Logger;
 /**
  * @author Alumno Tarde
  */
-public class Partida {
+public class Partida implements Serializable{
     
     private boolean[] aciertos;         //array de booleanos con los caracteres que ha acertado el usuario
-    protected boolean[] letrasMarcadas;   //array con las letras y números ya usados
+    protected boolean[] letrasMarcadas; //array con las letras y números ya usados
     private int puntos;                 //puntos del usuario
     private int dificultad;             //factor por el que se multiplican los puntos perdidos por cada fallo
     private String titulo;              //título a adivinar
