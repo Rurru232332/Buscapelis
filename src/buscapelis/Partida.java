@@ -8,14 +8,18 @@ package buscapelis;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.EOFException;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import static java.nio.file.StandardOpenOption.CREATE;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,6 +33,9 @@ public class Partida implements Serializable{
     private int puntos;                 //puntos del usuario
     private int dificultad;             //factor por el que se multiplican los puntos perdidos por cada fallo
     private String titulo;              //título a adivinar
+    private int aleatorio;              //número de línea aleatorio correspondiente a al título actual
+    private int contadorSaltos;         //número de líneas que tiene el fichero
+    private Properties prop;                    //properties
     
     /*
     Debido a la construcción del programa, aciertos representa los aciertos del título
@@ -66,22 +73,31 @@ public class Partida implements Serializable{
 
         BufferedReader br = null;
 
-        int contadorSaltos = 0;
-
-
+        contadorSaltos = 0;
+        prop = new Properties();
+        try {
+            prop.load(Files.newInputStream(Path.of("propiedades.properties")));
+        }
+        catch (IOException ex) {
+            //Logger.getLogger(MainSerializacion.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("No se pudo abrir el fichero de properties");
+        }
+        
         //System.out.print(aleatorio + " ");
         try {
 
             //CONTADOR DE LÍNEAS
-            br = new BufferedReader(new FileReader("peliculas.txt"));
+            br = new BufferedReader(new FileReader(prop.getProperty("rutaFicheroTitulos")));
 
             while (br.readLine() != null){
                 contadorSaltos ++;
             }
-
+            
             //ELECCIÓN DE TÍTULO
-            int aleatorio = (int)(Math.random() * contadorSaltos);
-            br = new BufferedReader(new FileReader("peliculas.txt"));
+            aleatorio = (int)(Math.random() * contadorSaltos);
+            
+            
+            br = new BufferedReader(new FileReader(prop.getProperty("rutaFicheroTitulos")));
 
             titulo = br.readLine();
             while (titulo != null && aleatorio!=0){
@@ -133,14 +149,83 @@ public class Partida implements Serializable{
         X  Y  Z  0  1  2  3  4  5  6  7  8  9
         24 25 26 27 28 29 30 31 32 33 34 35 36
         */
-        puntos = 1000;
-        dificultad = 1;
+        puntos = Integer.parseInt(prop.getProperty("puntosIniciales"));
+        dificultad = Integer.parseInt(prop.getProperty("multPenalizacionFacil"));
         letrasMarcadas = new boolean[37];
         for (int k = 0; k < letrasMarcadas.length; k++){
             letrasMarcadas[k] = false;
         }
         
     }
+    
+    public void actualizarFichero(){
+        
+        FileWriter fw = null;
+        BufferedReader br = null;
+        try {
+            var rutaOriginal = prop.getProperty("rutaFicheroTitulos");
+            var archivoTemporal = new File("titulosTemporal.txt");
+            var archivoOriginal = new File(rutaOriginal);
+            br = new BufferedReader(new FileReader(archivoOriginal));
+            fw = new FileWriter(archivoTemporal);
+            
+            //Recorre el fichero original y lo escribe en titulosTemporal.txt
+            for (int k = 0; k < contadorSaltos; k++){
+                String lineaLeida = br.readLine();
+                if (k != aleatorio){
+                    fw.write(lineaLeida);
+                }
+            }
+            Files.delete(Path.of(rutaOriginal));
+            Files.move(Path.of("titulosemporal.txt"), Path.of(rutaOriginal));
+            
+        }
+        catch (FileNotFoundException ex) {
+            //Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al abrir");
+        }
+        catch (IOException ex) {
+            //Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al escribir");
+        }
+        finally{
+            if (br != null){
+                try {
+                    br.close();
+                }
+                catch (IOException ex) {
+                    //Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println("Error al cerrar fichero");
+                }
+            }
+            if (fw != null){
+                try {
+                    fw.close();
+                }
+                catch (IOException ex) {
+                    //Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println("Error al cerrar fichero");
+                }
+            }
+        }
+        
+    }
+    
+    public String encriptar(){
+        
+        String r = "";
+        for (int k = 0; k < aciertos.length; k++){
+            if (aciertos[k] == true){
+                r += titulo.charAt(k);
+            }
+            else{
+                r += "*";
+            }
+        }
+        
+        return r;
+    }
+    
     
     //getters
     public boolean[] getAciertos(){
@@ -167,20 +252,6 @@ public class Partida implements Serializable{
         dificultad = n;
     }
     
-    public String encriptar(){
-        
-        String r = "";
-        for (int k = 0; k < aciertos.length; k++){
-            if (aciertos[k] == true){
-                r += titulo.charAt(k);
-            }
-            else{
-                r += "*";
-            }
-        }
-        
-        return r;
-    }
     
     /*
     public static void main (String[] args){

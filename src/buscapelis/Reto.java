@@ -5,7 +5,11 @@
  */
 package buscapelis;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -25,8 +29,17 @@ public class Reto implements Serializable{
     private int puntos;
     private int dificultad;
     private Partida partida;
+    private Properties prop;
     
     public Reto(Partida p){
+        prop = new Properties();
+        try {
+            prop.load(Files.newInputStream(Path.of("propiedades.properties")));
+        }
+        catch (IOException ex) {
+            //Logger.getLogger(MainSerializacion.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("No se pudo abrir el fichero de properties");
+        }
         partida = p;
         tituloOriginal = p.getTitulo();
         aciertos = p.getAciertos();
@@ -42,7 +55,7 @@ public class Reto implements Serializable{
             return true;
         }
         else{
-            puntos = puntos - (50 * dificultad);
+            puntos = puntos - (Integer.parseInt(prop.getProperty("penalizacionBaseComprobar")) * dificultad);
             return false;
         }
     }
@@ -57,7 +70,7 @@ public class Reto implements Serializable{
             }
         }
         
-        puntos -= 10 * dificultad;
+        puntos -= (Integer.parseInt(prop.getProperty("penalizacionBaseLetra")) * dificultad);
     }
     
     protected void sinTildes(){

@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -24,8 +25,19 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
     /**
      * Creates new form adivinaPeliculasVentana
      */
+    Properties prop;
     public adivinaPeliculasVentana() {
+        
+        prop = new Properties();
+        try {
+            prop.load(Files.newInputStream(Path.of("propiedades.properties")));
+        }
+        catch (IOException ex) {
+            //Logger.getLogger(MainSerializacion.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("No se pudo abrir el fichero de properties");
+        }
         initComponents();
+        
         arrayBotones = new JButton[37];
         
         arrayBotones[0] = m_ButA;
@@ -71,6 +83,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         String frase = m_PartidaActual.encriptar();
         m_TxtAFrase.setText(frase);
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         
     }
 
@@ -128,6 +141,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_TxtFAdivinarPelicula = new javax.swing.JTextField();
         m_ButPruebaSuerte = new javax.swing.JButton();
         m_LabPuntuacion = new javax.swing.JLabel();
+        m_LabIntroduce = new javax.swing.JLabel();
         m_MBarMain = new javax.swing.JMenuBar();
         m_MenPartida = new javax.swing.JMenu();
         m_MItNuevaPartida = new javax.swing.JMenuItem();
@@ -137,7 +151,6 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_MItFacil = new javax.swing.JMenuItem();
         m_MItIntermedio = new javax.swing.JMenuItem();
         m_MItDificil = new javax.swing.JMenuItem();
-        m_MenAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Adivina Películas");
@@ -148,7 +161,6 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_TxtAFrase.setColumns(20);
         m_TxtAFrase.setFont(new java.awt.Font("Lucida Console", 1, 24)); // NOI18N
         m_TxtAFrase.setRows(5);
-        m_TxtAFrase.setText("Hola que pasa");
 
         m_ButA.setText("A");
         m_ButA.addActionListener(new java.awt.event.ActionListener() {
@@ -562,31 +574,38 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
 
         m_LabPuntuacion.setText("Puntuación:");
 
+        m_LabIntroduce.setForeground(new java.awt.Color(255, 51, 51));
+        m_LabIntroduce.setText("¡Introduce un título!");
+
         javax.swing.GroupLayout m_PanAdivinaLayout = new javax.swing.GroupLayout(m_PanAdivina);
         m_PanAdivina.setLayout(m_PanAdivinaLayout);
         m_PanAdivinaLayout.setHorizontalGroup(
             m_PanAdivinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(m_PanAdivinaLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(m_PanAdivinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, m_PanAdivinaLayout.createSequentialGroup()
-                        .addComponent(m_LabAdivinar)
-                        .addGap(89, 89, 89))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, m_PanAdivinaLayout.createSequentialGroup()
                         .addComponent(m_ButPruebaSuerte)
                         .addGap(83, 83, 83))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, m_PanAdivinaLayout.createSequentialGroup()
                         .addGroup(m_PanAdivinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(m_LabPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(m_TxtFAdivinarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21))))
+                            .addComponent(m_TxtFAdivinarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(m_LabPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, m_PanAdivinaLayout.createSequentialGroup()
+                        .addGroup(m_PanAdivinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(m_LabIntroduce)
+                            .addComponent(m_LabAdivinar))
+                        .addGap(82, 82, 82))))
         );
         m_PanAdivinaLayout.setVerticalGroup(
             m_PanAdivinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(m_PanAdivinaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(m_LabAdivinar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(m_LabIntroduce)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(m_TxtFAdivinarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(m_ButPruebaSuerte)
@@ -602,9 +621,9 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
             .addGroup(m_PanMainLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(M_PanBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(m_PanAdivina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, m_PanMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(m_TxtAFrase)
@@ -681,9 +700,6 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
 
         m_MBarMain.add(m_MenDificultad);
 
-        m_MenAyuda.setText("Ayuda");
-        m_MBarMain.add(m_MenAyuda);
-
         setJMenuBar(m_MBarMain);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -706,6 +722,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('E');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
         
     }//GEN-LAST:event_m_ButEActionPerformed
@@ -716,6 +733,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('F');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButFActionPerformed
 
@@ -725,6 +743,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('G');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButGActionPerformed
 
@@ -734,6 +753,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('H');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButHActionPerformed
 
@@ -743,6 +763,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('I');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButIActionPerformed
 
@@ -752,6 +773,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('J');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButJActionPerformed
 
@@ -761,6 +783,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('K');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButKActionPerformed
 
@@ -770,6 +793,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('L');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButLActionPerformed
 
@@ -779,6 +803,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('M');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButMActionPerformed
 
@@ -788,6 +813,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('N');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButNActionPerformed
 
@@ -797,6 +823,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('Ñ');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButEnneActionPerformed
 
@@ -806,6 +833,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('O');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButOActionPerformed
 
@@ -815,6 +843,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('P');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButPActionPerformed
 
@@ -824,6 +853,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('Q');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButQActionPerformed
 
@@ -833,6 +863,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('R');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButRActionPerformed
 
@@ -842,6 +873,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('S');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButSActionPerformed
 
@@ -851,6 +883,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('T');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButTActionPerformed
 
@@ -860,6 +893,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('U');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButUActionPerformed
 
@@ -869,6 +903,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('V');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButVActionPerformed
 
@@ -878,6 +913,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('W');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButWActionPerformed
 
@@ -887,6 +923,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('X');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButXActionPerformed
 
@@ -896,6 +933,8 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('Z');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
+        comprobar();
     }//GEN-LAST:event_m_ButZActionPerformed
 
     private void m_ButYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_ButYActionPerformed
@@ -904,6 +943,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('Y');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButYActionPerformed
 
@@ -913,6 +953,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('1');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But1ActionPerformed
 
@@ -922,6 +963,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('0');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But0ActionPerformed
 
@@ -931,6 +973,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('2');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But2ActionPerformed
 
@@ -940,6 +983,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('3');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But3ActionPerformed
 
@@ -949,6 +993,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('4');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But4ActionPerformed
 
@@ -958,6 +1003,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('6');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But6ActionPerformed
 
@@ -967,6 +1013,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('5');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But5ActionPerformed
 
@@ -976,6 +1023,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('7');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But7ActionPerformed
 
@@ -985,6 +1033,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('8');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But8ActionPerformed
 
@@ -994,6 +1043,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('9');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_But9ActionPerformed
 
@@ -1008,16 +1058,25 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         // Si no pierde X puntos y continua.
         
         String respuesta = sinTildes(m_TxtFAdivinarPelicula.getText());
-        boolean victoria = m_RetoActual.comprobarTitulo(respuesta);
         
-        if (! victoria){
-            m_LabPuntuacion.setText("Puntuación: " + m_RetoActual.getPuntos());
+        if (respuesta == ""){
+            m_LabIntroduce.setVisible(true);
         }
+        
         else{
-            m_LabPuntuacion.setText("¡Enhorabuena! Has conseguido " + m_RetoActual.getPuntos()+" puntos");
-            m_TxtAFrase.setText(m_RetoActual.getTituloOriginal());
+            boolean victoria = m_RetoActual.comprobarTitulo(respuesta);
+            m_LabIntroduce.setVisible(false);
+            if (! victoria){
+                m_LabPuntuacion.setText("Puntuación: " + m_RetoActual.getPuntos());
+                comprobarPerdiste();
+            }
+            else{
+                m_LabPuntuacion.setText("¡Enhorabuena! Has conseguido " + m_RetoActual.getPuntos()+" puntos");
+                m_TxtAFrase.setText(m_RetoActual.getTituloOriginal());
+                m_PartidaActual.actualizarFichero();
+            }
+            m_TxtFAdivinarPelicula.setText(null);
         }
-        m_TxtFAdivinarPelicula.setText(null);
     }//GEN-LAST:event_m_ButPruebaSuerteActionPerformed
 
     private void m_ButDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_ButDActionPerformed
@@ -1026,6 +1085,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('D');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButDActionPerformed
 
@@ -1035,6 +1095,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('A');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButAActionPerformed
 
@@ -1072,6 +1133,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
                     m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
                     
                     reiniciarBotones();
+                    m_LabIntroduce.setVisible(false);
                     for (int k = 0; k < arrayBotones.length; k++){
                         if (m_PartidaActual.letrasMarcadas[k]){
                             arrayBotones[k].setEnabled(false);
@@ -1095,6 +1157,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('B');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButBActionPerformed
 
@@ -1104,23 +1167,24 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         m_RetoActual.introducirLetra('C');
         m_TxtAFrase.setText(m_PartidaActual.encriptar());
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         comprobar();
     }//GEN-LAST:event_m_ButCActionPerformed
 
     private void m_MItFacilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItFacilActionPerformed
-        m_DificultadActual = 1;
+        m_DificultadActual = Integer.parseInt(prop.getProperty("multPenalizacionFacil"));
         m_PartidaActual.setDificultad(m_DificultadActual);
         nuevaPartida();
     }//GEN-LAST:event_m_MItFacilActionPerformed
 
     private void m_MItIntermedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItIntermedioActionPerformed
-        m_DificultadActual = 3;
+        m_DificultadActual = Integer.parseInt(prop.getProperty("multPenalizacionMedia"));
         m_PartidaActual.setDificultad(m_DificultadActual);
         nuevaPartida();
     }//GEN-LAST:event_m_MItIntermedioActionPerformed
 
     private void m_MItDificilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_MItDificilActionPerformed
-        m_DificultadActual = 5;
+        m_DificultadActual = Integer.parseInt(prop.getProperty("multPenalizacionDificil"));
         m_PartidaActual.setDificultad(m_DificultadActual);
         nuevaPartida();
     }//GEN-LAST:event_m_MItDificilActionPerformed
@@ -1136,11 +1200,17 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         
         if (r == true){
             m_LabPuntuacion.setText("¡Enhorabuena! Has conseguido " + m_RetoActual.getPuntos());
+            m_PartidaActual.actualizarFichero();
         }
         
+        comprobarPerdiste();
+    }
+    
+    private void comprobarPerdiste(){
         if (m_RetoActual.getPuntos() <= 0){
             m_LabPuntuacion.setText("Oh, has perdido");
             m_TxtAFrase.setText(m_RetoActual.getTituloOriginal());
+            m_PartidaActual.actualizarFichero();
         }
     }
     
@@ -1151,6 +1221,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
         String frase = m_PartidaActual.encriptar();
         m_TxtAFrase.setText(frase);
         m_LabPuntuacion.setText("Puntuación: "+m_RetoActual.getPuntos());
+        m_LabIntroduce.setVisible(false);
         reiniciarBotones();
     }
     
@@ -1298,6 +1369,7 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
     private javax.swing.JButton m_ButY;
     private javax.swing.JButton m_ButZ;
     private javax.swing.JLabel m_LabAdivinar;
+    private javax.swing.JLabel m_LabIntroduce;
     private javax.swing.JLabel m_LabPuntuacion;
     private javax.swing.JMenuBar m_MBarMain;
     private javax.swing.JMenuItem m_MItCargarPartida;
@@ -1306,7 +1378,6 @@ public class adivinaPeliculasVentana extends javax.swing.JFrame {
     private javax.swing.JMenuItem m_MItGuardarPartida;
     private javax.swing.JMenuItem m_MItIntermedio;
     private javax.swing.JMenuItem m_MItNuevaPartida;
-    private javax.swing.JMenu m_MenAyuda;
     private javax.swing.JMenu m_MenDificultad;
     private javax.swing.JMenu m_MenPartida;
     private javax.swing.JPanel m_PanAdivina;
